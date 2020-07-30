@@ -66,3 +66,5 @@ if __name__ == "__main__":
     # as a script (i.e., it is not run if "gameagent.py" is
     # imported as a module)
     emptyState = GameState()  # create an instance of the object
+
+    emptyState.get_legal_moves()
