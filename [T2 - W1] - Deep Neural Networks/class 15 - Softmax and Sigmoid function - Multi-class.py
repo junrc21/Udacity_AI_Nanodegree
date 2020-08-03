@@ -10,24 +10,47 @@ import  matplotlib.pyplot as plt
 # Softmax equation:
 # SM = e^x1 / (e^x1 + e^x2 + e^x3 + e^Xn)
 
-# Sigmoid equation:
-# S = 1 / (e^-x)
-#Where x = sum of all features
+def softmax(Z):
 
-def softmax(L):
-
-    expL = np.exp(L)
-    sumExpL = sum(expL)
+    expZ = np.exp(Z)
+    sumExpZ = sum(expZ)
     result = []
-    for i in expL:
-        result.append(i*1.0/sumExpL)
+    for z in expZ:
+        result.append(z/sumExpZ)
+    return result
+
+def softmax2(X):
+    z1 = 0
+    _z = 0
+    result = []
+    for x in X:
+        z1 = np.exp(x)
+        _z = 0 
+        for _x in X:            
+            _z += np.exp(_x)
+    
+        result.append(z1 / _z)
+    
+    return result
+
+def softmax3(Z):
+    expZ = np.exp(Z)
+    sumExpZ = sum(expZ)
+    result = []
+    for z in expZ:
+        result.append(z/sumExpZ)
     return result
 
 
-
-L = [-2,-4, 0, 2, 4, 6, 8]
+L = [1.5, 2.5, 0.8]
 
 softmax_result = softmax(L)
+softmax_result2 = softmax2(L)
+softmax_result3 = softmax3(L)
+
+print(softmax_result)
+print(softmax_result2)
+print(softmax_result3)
 
 plt.plot(softmax_result, 'r', color='green')
 plt.show()
